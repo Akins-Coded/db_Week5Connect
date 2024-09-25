@@ -5,7 +5,7 @@ const express = require('express');
 //Instance of express framework
 const app = express(); 
 // DBMS Mysql 
-const mysql = require('mysql2');
+const mysql = require('mysql');
 // Cross Origin Resourse Sharing 
 const cors = require('cors');
 // Environment variable doc 
