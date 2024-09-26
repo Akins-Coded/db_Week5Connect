@@ -5,7 +5,7 @@ const express = require('express');
 //Instance of express framework
 const app = express(); 
 // DBMS Mysql 
-const mysql = require('mysql');
+const mysql = require('mysql2');
 // Cross Origin Resourse Sharing 
 const cors = require('cors');
 // Environment variable doc 
@@ -41,16 +41,14 @@ app.set('views', __dirname + '/views');
 // Data is a file found in the Views folder 
 
 app.get('/data', (req,res) => {
-
+    const getpatients = "SELECT first_name, last_name FROM patients"
     // Retrieve data from database 
-    db.query('SELECT * FROM patients', (err, results) =>{
+    db.query(getpatients, (err, results) => {
         if (err){
-            console.error(err);
-            res.status(500).send('Error Retrieving data')
-        }else {
-            //Display the records to the browser 
-            res.render('data', {results: results});
+            return res.status(400).send("Failed to get patients", err)
         }
+        // res.status(200)
+        res.status(200).send(data)
     });
 });
 
